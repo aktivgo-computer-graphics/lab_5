@@ -8,21 +8,21 @@ namespace task
 {
     public partial class MainForm : Form
     {
-        private Graphics Graph;
-        private Pen MyPen;
+        private readonly Graphics Graph;
+        private readonly Pen MyPen;
 
         private float x0;
         private float y0;
         private float angle = (float) -Math.PI / 2;
-        private float angleMer = (float) Math.PI / 4;
-        private float m = (float) 0.8;
+        private const float AngleMer = (float)Math.PI / 4;
+        private const float M = (float)0.8;
 
         public MainForm()
         {
             InitializeComponent();
             Graph = CreateGraphics();
             Graph.SmoothingMode = SmoothingMode.HighQuality;
-            MyPen = new Pen(Color.Red);
+            MyPen = new Pen(Color.Black);
         }
         
         private void paintButton_Click(object sender, EventArgs e)
@@ -92,14 +92,14 @@ namespace task
             
             Graph.DrawLine(MyPen, x0, y0, this.x0, this.y0);
             
-            angle -= angleMer / 2;
-            PaintBranch(length * m);
+            angle -= AngleMer / 2;
+            PaintBranch(length * M);
             
-            angle += angleMer;
-            PaintBranch(length * m);
+            angle += AngleMer;
+            PaintBranch(length * M);
             
-            angle -= angleMer / 2;
-            PaintBranch(length * m);
+            angle -= AngleMer / 2;
+            PaintBranch(length * M);
             
             this.x0 -= (float)(length * Math.Cos(angle));
             this.y0 -= (float)(length * Math.Sin(angle));
